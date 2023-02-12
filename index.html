@@ -18,13 +18,21 @@
         $display_video = rand(0, 1);
         if ($display_video) {
           $video_url = "https://www.youtube.com/embed/dQw4w9WgXcQ";
-          $muted = "muted";
         } else {
           $video_url = "";
-          $muted = "";
         }
       ?>
-      <iframe id="recharge-card-video" width="560" height="315" src="<?php echo $video_url; ?>?autoplay=1&<?php echo $muted; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id="recharge-card-video" width="560" height="315" src="<?php echo $video_url; ?>?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </body>
+  <script>
+    var video = document.getElementById("recharge-card-video");
+    video.onload = function() {
+      if (video.src === "") {
+        video.muted = true;
+      } else {
+        video.muted = false;
+      }
+    };
+  </script>
 </html>
