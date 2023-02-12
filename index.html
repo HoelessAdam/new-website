@@ -2,33 +2,29 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Event Prize</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Prize Event</title>
+    <style>
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+    </style>
   </head>
   <body>
-    <header>
-      <h1>Event Prize</h1>
-    </header>
-    <main>
-      <h2 id="message">Congratulations! You have found the prize.</h2>
-      <p>Here's a photo of the recharge card you have won:</p>
-      <img id="recharge-card" src="recharge_card.jpg" alt="Recharge Card">
-      <div id="video-container" style="display: none; margin: 0 auto; max-width: 90%;">
-        <iframe id="rickroll-video" width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </div>
-    </main>
-    <script>
-      function displayRickroll() {
-        document.getElementById("message").style.display = "none";
-        document.getElementById("recharge-card").style.display = "none";
-        document.getElementById("video-container").style.display = "block";
-      }
-      // Choose a random number between 0 and 1
-      var randomNumber = Math.random();
-      // If the random number is less than 0.5, display the recharge card
-      if (randomNumber < 0.5) {
-        displayRickroll();
-      }
-    </script>
+    <div class="center">
+      <?php
+        $display_video = rand(0, 1);
+        if ($display_video) {
+          $video_url = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+          $muted = "muted";
+        } else {
+          $video_url = "";
+          $muted = "";
+        }
+      ?>
+      <iframe id="recharge-card-video" width="560" height="315" src="<?php echo $video_url; ?>?autoplay=1&<?php echo $muted; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
   </body>
 </html>
